@@ -1,6 +1,0 @@
-{
-  "name": "Mongodb-Auto-Backup-S3",
-  "tagline": "Bash Script for MongoDB Backup to Amazon S3 Periodically",
-  "body": "### How to use\r\nYou must initialize these variables in script (`mongo-s3-bkg.sh`):\r\n\r\n`MONGODB_USER`       This is your Mongodb root user\r\n\r\n`MONGODB_PASSWORD`   This is your Mongodb root user\\'s password\r\n\r\n`AWS_ACCESS_KEY`     This is the AWS Access Key where you want to store your backup\r\n\r\n`AWS_SECRET_KEY`     This is the AWS Secret Key where you want to store your backup\r\n\r\n`S3_REGION`          This is the Amazon S3 region where you want to store your backup\r\n\r\n`S3_BUCKET`          This is the Amazon S3 bucket name where you want to store your backup\r\n\r\nAnd run this command in terminal `bash /path/to/mongo-s3-bkg.sh`.\r\n\r\n\r\n### How to run periodically\r\n\r\nrun this command in terminal `sudo crontab -e` and choose option 2 to nano edittor.\r\n\r\nThen add this line `0 1 * * * bash /path/to/mongo-s3-bkg.sh` in cronjobs to Execute on everyday at 01:00.\r\n\r\nIf you want to store the output in a log file, then this line `0 1 * * * bash /path/to/mongo-s3-bkg.sh > /var/log/db-bkg.log 2>&1`.\r\n\r\nTo view the list of cronjobs you can run: `sudo crontab -l`.\r\n",
-  "note": "Don't delete this file! It's used internally to help with page regeneration."
-}
