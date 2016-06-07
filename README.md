@@ -1,4 +1,4 @@
-# mongodb-auto-backup-s3
+# MongoDB-Auto-Backup-S3
 Bash Script for MongoDB Backup to Amazon S3 Periodically
 
 
