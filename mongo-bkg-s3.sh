@@ -1,6 +1,6 @@
 # !/bin/bash
-# https://github.com/IamMohaiminul/mongodb-auto-backup-s3
-# This script dumps the your mongo database, tars it, then sends it to an Amazon S3 bucket.
+# http://IamMohaiminul.GitHub.io/MongoDB-Auto-Backup-S3/
+# This script dumps the your mongo database and compress it and then sends it to your Amazon S3 bucket.
 
 set -e
 
