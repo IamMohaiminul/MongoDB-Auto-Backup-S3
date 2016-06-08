@@ -22,10 +22,10 @@ And run this command in terminal `bash /path/to/mongo-bkg-s3.sh`.
 
 ### How to run periodically
 
-run this command in terminal `sudo crontab -e` and choose option 2 to nano edittor.
+To edit cronjobs, run this command in terminal `sudo crontab -e` and choose option to your desire edittor.
 
-Then add this line `0 1 * * * bash /path/to/mongo-bkg-s3.sh` in cronjobs to Execute on everyday at 01:00.
+Then add this line `0 1 * * * bash /path/to/mongo-bkg-s3.sh` in cronjobs to execute on everyday at 01:00 AM.
 
-If you want to store the output in a log file, then this line `0 1 * * * bash /path/to/mongo-bkg-s3.sh > /var/log/db-bkg.log 2>&1`.
+If you want to store the output in a log file, then use this one `0 1 * * * bash /path/to/mongo-bkg-s3.sh > /var/log/db-bkg.log 2>&1`.
 
 To view the list of cronjobs you can run: `sudo crontab -l`.
