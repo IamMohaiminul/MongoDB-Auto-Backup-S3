@@ -6,19 +6,7 @@ set -e
 
 export PATH="$PATH:/usr/local/bin"
 
-variableMissingMsg()
-{
-cat << EOF
-usage: $0 options
-Some variable initialization is missing. You must initialize these variables in script:
-  -MONGODB_USER       This is your Mongodb root user
-  -MONGODB_PASSWORD   This is your Mongodb root user\'s password
-  -AWS_ACCESS_KEY     This is the AWS Access Key where you want to store your backup
-  -AWS_SECRET_KEY     This is the AWS Secret Key where you want to store your backup
-  -S3_REGION          This is the Amazon S3 region where you want to store your backup
-  -S3_BUCKET          This is the Amazon S3 bucket name where you want to store your backup
-EOF
-}
+MSG="Required Variable Initialization Missing!"
 
 # Initialize these variables
 MONGODB_USER=
@@ -30,7 +18,7 @@ S3_BUCKET=
 
 if [[ -z $MONGODB_USER ]] || [[ -z $MONGODB_PASSWORD ]] || [[ -z $AWS_ACCESS_KEY ]] || [[ -z $AWS_SECRET_KEY ]] || [[ -z $S3_REGION ]] || [[ -z $S3_BUCKET ]]
 then
-  variableMissingMsg
+  echo $MSG
   exit 1
 fi
 
@@ -56,7 +44,10 @@ mongo --username "$MONGODB_USER" --password "$MONGODB_PASSWORD" admin --eval "pr
 # Tar Gzip the file
 tar -C $DIR/mongo-s3-bkg/ -zcvf $DIR/mongo-s3-bkg/$ARCHIVE_NAME $FILE_NAME/
 
-# Send the file to the backup drive or S3
+# Remove the backup from directory
+rm -r $DIR/mongo-s3-bkg/$FILE_NAME
+
+# Send the Tar Gzip file to the backup drive S3
 HEADER_DATE=$(date -u "+%a, %d %b %Y %T %z")
 CONTENT_MD5=$(openssl dgst -md5 -binary $DIR/mongo-s3-bkg/$ARCHIVE_NAME | openssl enc -base64)
 CONTENT_TYPE="application/x-download"
@@ -71,6 +62,3 @@ curl -X PUT \
 --header "Authorization: AWS $AWS_ACCESS_KEY:$SIGNATURE" \
 --upload-file $DIR/mongo-s3-bkg/$ARCHIVE_NAME \
 https://$S3_BUCKET.s3-$S3_REGION.amazonaws.com/$ARCHIVE_NAME
-
-# Remove the backup directory
-rm -r $DIR/mongo-s3-bkg/$FILE_NAME
