@@ -49,7 +49,7 @@ rm -r $DIR/mongo-bkg-s3/$FILE_NAME
 
 # Send the Tar Gzip file to the backup drive S3
 HEADER_DATE=$(date -u "+%a, %d %b %Y %T %z")
-CONTENT_MD5=$(openssl dgst -md5 -binary $DIR/mongo-s3-bkg/$ARCHIVE_NAME | openssl enc -base64)
+CONTENT_MD5=$(openssl dgst -md5 -binary $DIR/mongo-bkg-s3/$ARCHIVE_NAME | openssl enc -base64)
 CONTENT_TYPE="application/x-download"
 STRING_TO_SIGN="PUT\n$CONTENT_MD5\n$CONTENT_TYPE\n$HEADER_DATE\n/$S3_BUCKET/$ARCHIVE_NAME"
 SIGNATURE=$(echo -e -n $STRING_TO_SIGN | openssl dgst -sha1 -binary -hmac $AWS_SECRET_KEY | openssl enc -base64)
@@ -60,5 +60,5 @@ curl -X PUT \
 --header "content-type: $CONTENT_TYPE" \
 --header "Content-MD5: $CONTENT_MD5" \
 --header "Authorization: AWS $AWS_ACCESS_KEY:$SIGNATURE" \
---upload-file $DIR/mongo-s3-bkg/$ARCHIVE_NAME \
+--upload-file $DIR/mongo-bkg-s3/$ARCHIVE_NAME \
 https://$S3_BUCKET.s3-$S3_REGION.amazonaws.com/$ARCHIVE_NAME
