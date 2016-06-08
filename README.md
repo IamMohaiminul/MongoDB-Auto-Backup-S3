@@ -7,7 +7,7 @@ You must initialize these variables in script (`mongo-bkg-s3.sh`):
 
 `MONGODB_USER`       This is your Mongodb root user
 
-`MONGODB_PASSWORD`   This is your Mongodb root user\'s password
+`MONGODB_PASSWORD`   This is your Mongodb root user's password
 
 `AWS_ACCESS_KEY`     This is the AWS Access Key where you want to store your backup
 
