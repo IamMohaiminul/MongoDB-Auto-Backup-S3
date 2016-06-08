@@ -36,16 +36,16 @@ ARCHIVE_NAME="$FILE_NAME.tar.gz"
 mongo --username "$MONGODB_USER" --password "$MONGODB_PASSWORD" admin --eval "var databaseNames = db.getMongo().getDBNames(); for (var i in databaseNames) { printjson(db.getSiblingDB(databaseNames[i]).getCollectionNames()) }; printjson(db.fsyncLock());"
 
 # Dump the database
-mongodump --username "$MONGODB_USER" --password "$MONGODB_PASSWORD" --out $DIR/mongo-s3-bkg/$FILE_NAME
+mongodump --username "$MONGODB_USER" --password "$MONGODB_PASSWORD" --out $DIR/mongo-bkg-s3/$FILE_NAME
 
 # Unlock the database
 mongo --username "$MONGODB_USER" --password "$MONGODB_PASSWORD" admin --eval "printjson(db.fsyncUnlock());"
 
 # Tar Gzip the file
-tar -C $DIR/mongo-s3-bkg/ -zcvf $DIR/mongo-s3-bkg/$ARCHIVE_NAME $FILE_NAME/
+tar -C $DIR/mongo-bkg-s3/ -zcvf $DIR/mongo-bkg-s3/$ARCHIVE_NAME $FILE_NAME/
 
 # Remove the backup from directory
-rm -r $DIR/mongo-s3-bkg/$FILE_NAME
+rm -r $DIR/mongo-bkg-s3/$FILE_NAME
 
 # Send the Tar Gzip file to the backup drive S3
 HEADER_DATE=$(date -u "+%a, %d %b %Y %T %z")
