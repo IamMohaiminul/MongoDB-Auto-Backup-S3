@@ -21,16 +21,16 @@
       <h3><a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use</h3>
       <p>You must initialize these variables in script (<code>mongo-bkg-s3.sh</code>):</p>
       <p><code>MONGODB_USER</code>       This is your Mongodb root user</p>
-      <p><code>MONGODB_PASSWORD</code>   This is your Mongodb root user\'s password</p>
+      <p><code>MONGODB_PASSWORD</code>   This is your Mongodb root user's password</p>
       <p><code>AWS_ACCESS_KEY</code>     This is the AWS Access Key where you want to store your backup</p>
       <p><code>AWS_SECRET_KEY</code>     This is the AWS Secret Key where you want to store your backup</p>
       <p><code>S3_REGION</code>          This is the Amazon S3 region where you want to store your backup</p>
       <p><code>S3_BUCKET</code>          This is the Amazon S3 bucket name where you want to store your backup</p>
       <p>And run this command in terminal <code>bash /path/to/mongo-bkg-s3.sh</code>.</p>
       <h3><a id="how-to-run-periodically" class="anchor" href="#how-to-run-periodically" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to run periodically</h3>
-      <p>run this command in terminal <code>sudo crontab -e</code> and choose option 2 to nano edittor.</p>
-      <p>Then add this line <code>0 1 * * * bash /path/to/mongo-bkg-s3.sh</code> in cronjobs to Execute on everyday at 01:00.</p>
-      <p>If you want to store the output in a log file, then this line <code>0 1 * * * bash /path/to/mongo-bkg-s3.sh &gt; /var/log/db-bkg.log 2&gt;&amp;1</code>.</p>
+      <p>To edit cronjobs, run this command in terminal <code>sudo crontab -e</code> and choose option to your desire edittor.</p>
+      <p>Then add this line <code>0 1 * * * bash /path/to/mongo-bkg-s3.sh</code> in cronjobs to execute on everyday at 01:00 AM.</p>
+      <p>If you want to store the output in a log file, then use this one <code>0 1 * * * bash /path/to/mongo-bkg-s3.sh &gt; /var/log/db-bkg.log 2&gt;&amp;1</code>.</p>
       <p>To view the list of cronjobs you can run: <code>sudo crontab -l</code>.</p>
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/IamMohaiminul/mongodb-auto-backup-s3">Mongodb-Auto-Backup-S3</a> is maintained by <a href="https://github.com/IamMohaiminul">IamMohaiminul</a>.</span>
