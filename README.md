@@ -17,15 +17,15 @@ You must initialize these variables in script (`mongo-bkg-s3.sh`):
 
 `S3_BUCKET`          This is the Amazon S3 bucket name where you want to store your backup
 
-And run this command in terminal `bash /path/to/mongo-bkg-s3.sh`.
+And run this command in terminal `bash /path-to/mongo-bkg-s3.sh`.
 
 
 ### How to run periodically
 
 To edit cronjobs, run this command in terminal `sudo crontab -e` and choose option to your desire edittor.
 
-Then add this line `0 1 * * * bash /path/to/mongo-bkg-s3.sh` in cronjobs to execute on everyday at 01:00 AM.
+Then add this line `0 1 * * * bash /path-to/mongo-bkg-s3.sh` in cronjobs to execute on everyday at 01:00 AM.
 
-If you want to store the output in a log file, then use this one `0 1 * * * bash /path/to/mongo-bkg-s3.sh > /path/to/db-bkg.log 2>&1`.
+If you want to store the output in a log file, then use this one `0 1 * * * bash /path-to/mongo-bkg-s3.sh > /path-to/db-bkg.log 2>&1`.
 
 To view the list of cronjobs you can run: `sudo crontab -l`.
